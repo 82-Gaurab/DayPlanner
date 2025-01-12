@@ -29,7 +29,7 @@ class RegistrationActivity : AppCompatActivity() {
         userViewModel = UserViewModel(userRepository)
 
         binding.btnRegister.setOnClickListener {
-            var email: String = binding.inpEmail.text.toString()
+            var email: String = binding.textEmail.text.toString()
             var password: String = binding.inpPassword.text.toString()
             var fName: String = binding.inpFirstName.text.toString()
             var lName: String = binding.inpLastName.text.toString()
