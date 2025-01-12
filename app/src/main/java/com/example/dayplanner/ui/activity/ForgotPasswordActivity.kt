@@ -8,47 +8,37 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.dayplanner.R
-import com.example.dayplanner.databinding.ActivityLoginBinding
-import com.example.dayplanner.repository.UserRepository
+import com.example.dayplanner.databinding.ActivityForgotPasswordBinding
 import com.example.dayplanner.repository.UserRepositoryImp
 import com.example.dayplanner.viewmodel.UserViewModel
 
-class LoginActivity : AppCompatActivity() {
+class ForgotPasswordActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityLoginBinding
+    lateinit var binding: ActivityForgotPasswordBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
-        binding = ActivityLoginBinding.inflate(layoutInflater)
+        binding = ActivityForgotPasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val userRepository = UserRepositoryImp()
         val userViewModel = UserViewModel(userRepository)
 
-        binding.btnLogin.setOnClickListener {
-            var email: String = binding.editTextEmail.text.toString()
-            var password: String = binding.editTextPassword.text.toString()
 
-            userViewModel.login(email, password) {
+        binding.btnSubmit.setOnClickListener {
+            var email: String = binding.textEmail.text.toString();
+
+            userViewModel.forgetPassword(email) {
                     success, message ->
                 if (success) {
-                    Toast.makeText(this@LoginActivity,message, Toast.LENGTH_SHORT).show()
-                }else{
-                    Toast.makeText(this@LoginActivity,message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ForgotPasswordActivity, message, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this@ForgotPasswordActivity, LoginActivity::class.java))
+                } else {
+                    Toast.makeText(this@ForgotPasswordActivity, message, Toast.LENGTH_LONG).show()
                 }
             }
         }
-
-        binding.redirectRegistration.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, RegistrationActivity::class.java))
-        }
-
-        binding.redirectForgetPassword.setOnClickListener {
-            startActivity(Intent(this@LoginActivity, ForgotPasswordActivity::class.java))
-        }
-
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

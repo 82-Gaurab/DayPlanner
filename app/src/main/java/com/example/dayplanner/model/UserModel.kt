@@ -8,7 +8,6 @@ class UserModel (
     var email: String = "",
     var firstName: String = "",
     var lastName: String = "",
-    var address: String = "",
     var phoneNumber: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
@@ -17,7 +16,6 @@ class UserModel (
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
-        parcel.readString() ?: ""
     ) {
     }
 
@@ -26,7 +24,6 @@ class UserModel (
         parcel.writeString(email)
         parcel.writeString(firstName)
         parcel.writeString(lastName)
-        parcel.writeString(address)
         parcel.writeString(phoneNumber)
     }
 
