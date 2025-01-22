@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.dayplanner.R
 import com.example.dayplanner.databinding.ActivityLoginBinding
-import com.example.dayplanner.repository.UserRepository
 import com.example.dayplanner.repository.UserRepositoryImp
 import com.example.dayplanner.viewmodel.UserViewModel
 
@@ -50,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
         }
 
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.editTaskDesc)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
