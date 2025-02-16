@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.dayplanner.R
+import com.example.dayplanner.adapter.TaskAdapter
 import com.example.dayplanner.databinding.ActivityTaskDashboardBinding
 import com.example.dayplanner.model.TaskModel
 import com.example.dayplanner.repository.TaskRepositoryImpl
@@ -15,6 +16,7 @@ import com.example.dayplanner.viewmodel.TaskViewModel
 class TaskDashboardActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityTaskDashboardBinding
+    lateinit var adapter: TaskAdapter
 
     lateinit var taskViewModel: TaskViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +34,7 @@ class TaskDashboardActivity : AppCompatActivity() {
         taskViewModel.allTasks.observe(this) {
             product ->
             product?.let {
-                adapter
+                adapter.updateData(it)
             }
         }
 

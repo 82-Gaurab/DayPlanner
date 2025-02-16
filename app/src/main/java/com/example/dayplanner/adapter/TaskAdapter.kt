@@ -1,24 +1,40 @@
 package com.example.dayplanner.adapter
 
 import android.content.Context
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dayplanner.R
 import com.example.dayplanner.model.TaskModel
 
 class TaskAdapter (val context: Context, var data: ArrayList<TaskModel>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        val tName: TextView = itemView.findViewById(R.id.tvTaskName)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        TODO("Not yet implemented")
+        val itemView: View = LayoutInflater.from(context).inflate(R.layout.sample_task, parent, false)
+        return TaskViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
-        TODO("Not yet implemented")
+        return data.size
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        holder.tName.text = data[position].taskTitle
+    }
+
+    fun updateData(tasks: List<TaskModel>){
+        data.clear()
+        data.addAll(tasks)
+        notifyDataSetChanged() // updates in real time without reloading
+    }
+
+
+    fun getProductId (position: Int): String{
+        return data[position].taskId
     }
 }

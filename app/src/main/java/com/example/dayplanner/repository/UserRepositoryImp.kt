@@ -31,9 +31,9 @@ class UserRepositoryImp: UserRepository {
         password: String,
         callback: (Boolean, String, String) -> Unit
     ) {
-        val userid =auth.currentUser?.uid
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful){
+                val userid =auth.currentUser?.uid
                 callback(true, "New Account Created", userid.toString())
             } else {
                 callback(false, it.exception?.message.toString(), "")
