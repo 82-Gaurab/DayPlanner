@@ -8,17 +8,33 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.dayplanner.R
 import com.example.dayplanner.databinding.ActivityTaskDashboardBinding
+import com.example.dayplanner.model.TaskModel
+import com.example.dayplanner.repository.TaskRepositoryImpl
+import com.example.dayplanner.viewmodel.TaskViewModel
 
 class TaskDashboardActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityTaskDashboardBinding
 
+    lateinit var taskViewModel: TaskViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         binding = ActivityTaskDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        var repo = TaskRepositoryImpl()
+        taskViewModel = TaskViewModel(repo)
+
+        taskViewModel.getAllTask()
+
+        taskViewModel.allTasks.observe(this) {
+            product ->
+            product?.let {
+                adapter
+            }
+        }
 
         binding.addTaskFloatingBtn.setOnClickListener {
             startActivity(Intent(this@TaskDashboardActivity, AddTaskActivity::class.java))
