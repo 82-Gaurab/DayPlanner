@@ -1,5 +1,6 @@
 package com.example.dayplanner.ui.activity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -52,6 +53,7 @@ class AddTaskActivity : AppCompatActivity() {
         taskViewModel.addTask(model) {success , message ->
             if (success) {
                 Toast.makeText(this@AddTaskActivity, message, Toast.LENGTH_LONG).show()
+                startActivity(Intent(this@AddTaskActivity, TaskDashboardActivity::class.java))
                 finish()
             } else {
                 Toast.makeText(this@AddTaskActivity, message, Toast.LENGTH_LONG).show()

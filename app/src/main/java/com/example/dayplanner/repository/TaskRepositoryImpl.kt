@@ -15,6 +15,7 @@ class TaskRepositoryImpl : TaskRepository {
     // Adding task into realtime database
     override fun addTask(taskModel: TaskModel, callback: (Boolean, String) -> Unit) {
         var id = reference.push().key.toString()
+        taskModel.taskId = id
         reference.child(id).setValue(taskModel).addOnCompleteListener {
             if (it.isSuccessful) {
                 callback(true, "Task added Successfully")
@@ -69,7 +70,7 @@ class TaskRepositoryImpl : TaskRepository {
 
     // Get all task
     override fun getAllTask(callback: (List<TaskModel>?, Boolean, String) -> Unit) {
-        reference.addValueEventListener(object : ValueEventListener {
+        reference.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var tasks = mutableListOf<TaskModel>()
                 if (snapshot.exists()) {

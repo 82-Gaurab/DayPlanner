@@ -12,6 +12,7 @@ import com.example.dayplanner.databinding.ActivityTaskDashboardBinding
 import com.example.dayplanner.model.TaskModel
 import com.example.dayplanner.repository.TaskRepositoryImpl
 import com.example.dayplanner.viewmodel.TaskViewModel
+import java.util.ArrayList
 
 class TaskDashboardActivity : AppCompatActivity() {
 
@@ -25,6 +26,8 @@ class TaskDashboardActivity : AppCompatActivity() {
 
         binding = ActivityTaskDashboardBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        adapter = TaskAdapter(this@TaskDashboardActivity, ArrayList())
 
         var repo = TaskRepositoryImpl()
         taskViewModel = TaskViewModel(repo)
