@@ -1,5 +1,6 @@
 package com.example.dayplanner.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -33,27 +34,36 @@ class AddTaskActivity : AppCompatActivity() {
             addTask()
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.editTaskDesc)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.inpTaskDetail)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
 
+    @SuppressLint("DefaultLocale")
     private fun addTask(){
-        var taskTitle = binding.editTaskTitle.text.toString()
-        var taskDesc = binding.editTaskDesc.text.toString()
+        var taskTitle = binding.inpTaskTitle.text.toString()
+        var taskDesc = binding.inpTaskDetail.text.toString()
+
+        // Fetch time from TimePicker
+        val hour = binding.timePicker.hour
+        val minute = binding.timePicker.minute
+
+        // Convert hour and minute to a formatted time string
+        val taskTime = String.format("%02d:%02d", hour, minute)
 
         var model = TaskModel(
             "",
             taskTitle,
-            taskDesc
+            taskDesc,
+            taskTime
         )
 
         taskViewModel.addTask(model) {success , message ->
             if (success) {
                 Toast.makeText(this@AddTaskActivity, message, Toast.LENGTH_LONG).show()
-                startActivity(Intent(this@AddTaskActivity, TaskDashboardActivity::class.java))
+                startActivity(Intent(this@AddTaskActivity, DashBoardActivity::class.java))
                 finish()
             } else {
                 Toast.makeText(this@AddTaskActivity, message, Toast.LENGTH_LONG).show()

@@ -69,24 +69,45 @@ class TaskRepositoryImpl : TaskRepository {
     }
 
     // Get all task
+//    override fun getAllTask(callback: (List<TaskModel>?, Boolean, String) -> Unit) {
+//        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                var tasks = mutableListOf<TaskModel>()
+//                if (snapshot.exists()) {
+//                    for (eachTask in snapshot.children) {
+//                        var model = eachTask.getValue(TaskModel::class.java)
+//                        if (model != null){
+//                            tasks.add(model)
+//                        }
+//                    }
+//                    callback (tasks , true , "fetched")
+//                }
+//            }
+//
+//            override fun onCancelled(error: DatabaseError) {
+//                callback (null, false, error.message)
+//            }
+//        })
+//    }
     override fun getAllTask(callback: (List<TaskModel>?, Boolean, String) -> Unit) {
-        reference.addListenerForSingleValueEvent(object : ValueEventListener {
+        reference.addValueEventListener(object : ValueEventListener { // Change this
             override fun onDataChange(snapshot: DataSnapshot) {
-                var tasks = mutableListOf<TaskModel>()
+                val tasks = mutableListOf<TaskModel>()
                 if (snapshot.exists()) {
                     for (eachTask in snapshot.children) {
-                        var model = eachTask.getValue(TaskModel::class.java)
-                        if (model != null){
-                            tasks.add(model)
-                        }
+                        val model = eachTask.getValue(TaskModel::class.java)
+                        model?.let { tasks.add(it) }
                     }
-                    callback (tasks , true , "fetched")
+                    callback(tasks, true, "fetched")
+                } else {
+                    callback(emptyList(), true, "No data found")
                 }
             }
 
             override fun onCancelled(error: DatabaseError) {
-                callback (null, false, error.message)
+                callback(null, false, error.message)
             }
         })
     }
+
 }

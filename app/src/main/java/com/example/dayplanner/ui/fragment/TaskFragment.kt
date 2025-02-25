@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dayplanner.R
 import com.example.dayplanner.adapter.TaskAdapter
 import com.example.dayplanner.databinding.FragmentTaskBinding
@@ -37,6 +38,12 @@ class TaskFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = TaskAdapter(requireContext(), ArrayList())
+
+//        Set up recycler view
+        binding.taskRecyclerView.layoutManager = LinearLayoutManager(requireContext()) // Set layout manager
+        binding.taskRecyclerView.adapter = adapter // Set adapter
+
+//        Initialize viewModel
         val repo = TaskRepositoryImpl()
         taskViewModel = TaskViewModel(repo)
 

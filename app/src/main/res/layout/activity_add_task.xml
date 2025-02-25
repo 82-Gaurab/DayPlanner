@@ -10,32 +10,39 @@
     android:gravity="center"
     tools:context=".ui.activity.AddTaskActivity">
 
-  <EditText
-      android:id="@+id/editTaskTitle"
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/inpTaskTitleContainer"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:ems="10"
-      android:textSize="20sp"
-      android:inputType="text"
       android:layout_marginEnd="20dp"
       android:layout_marginStart="20dp"
-      android:hint="Enter Task Title"
-      android:layout_marginBottom="10dp"/>
+      android:layout_marginBottom="10dp">
 
-  <EditText
-      android:id="@+id/editTaskDesc"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inpTaskTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter task title" />
+
+  </com.google.android.material.textfield.TextInputLayout>
+
+  <com.google.android.material.textfield.TextInputLayout
+      android:id="@+id/inpTDetailContainer"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:ems="10"
-      android:inputType="text"
-      android:textSize="20sp"
       android:layout_marginEnd="20dp"
       android:layout_marginStart="20dp"
-      android:hint="Enter Task Description"
-      android:layout_marginBottom="10dp"/>
+      android:layout_marginBottom="10dp">
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/inpTaskDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter task Detail" />
+  </com.google.android.material.textfield.TextInputLayout>
 
   <TimePicker
-      android:id="@+id/timePicker1"
+      android:id="@+id/timePicker"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_centerHorizontal="true"

@@ -6,9 +6,11 @@ import android.os.Parcelable
 class TaskModel (
     var taskId: String = "",
     var taskTitle: String = "",
-    var taskDesc: String = ""
+    var taskDesc: String = "",
+    var taskTime: String = ""
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: "",
         parcel.readString() ?: ""
@@ -19,6 +21,7 @@ class TaskModel (
         parcel.writeString(taskId)
         parcel.writeString(taskTitle)
         parcel.writeString(taskDesc)
+        parcel.writeString(taskTime)
     }
 
     override fun describeContents(): Int {
