@@ -49,7 +49,8 @@ class TaskFragment : Fragment() {
 
         taskViewModel.getAllTask()
 
-        taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+        taskViewModel.allTask.observe(viewLifecycleOwner)
+        { tasks ->
             tasks?.let {
                 adapter.updateData(it)
             }

@@ -12,6 +12,8 @@ import com.example.dayplanner.model.TaskModel
 class TaskAdapter (val context: Context, var data: ArrayList<TaskModel>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
     class TaskViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         val tName: TextView = itemView.findViewById(R.id.tvTaskName)
+        val tDesc: TextView = itemView.findViewById(R.id.tvTaskDesc)
+        val tTime: TextView = itemView.findViewById(R.id.tvTaskTime)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
@@ -25,6 +27,8 @@ class TaskAdapter (val context: Context, var data: ArrayList<TaskModel>) : Recyc
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
         holder.tName.text = data[position].taskTitle
+        holder.tDesc.text = data[position].taskDesc
+        holder.tTime.text = data[position].taskTime
     }
 
     fun updateData(tasks: List<TaskModel>){

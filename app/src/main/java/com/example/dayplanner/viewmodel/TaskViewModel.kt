@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.example.dayplanner.model.TaskModel
 import com.example.dayplanner.repository.TaskRepository
 
-class TaskViewModel (val repository: TaskRepository) : ViewModel() {
+class TaskViewModel (val repository: TaskRepository) {
     fun addTask(taskModel: TaskModel, callback:(Boolean, String) -> Unit){
         repository.addTask(taskModel , callback)
     }
@@ -23,6 +23,10 @@ class TaskViewModel (val repository: TaskRepository) : ViewModel() {
     var task = MutableLiveData<TaskModel>()
         get() = _tasks //getter
 
+    var _allTasks = MutableLiveData<List<TaskModel>?>()
+    var allTask = MutableLiveData<List<TaskModel>?>()
+        get() = _allTasks
+
     fun getTaskById(taskId: String){
         repository.getTaskById(taskId) {
             task, success, message ->
@@ -32,27 +36,14 @@ class TaskViewModel (val repository: TaskRepository) : ViewModel() {
         }
     }
 
-//    var _allTasks = MutableLiveData<List<TaskModel>?>()
-//    var allTasks = MutableLiveData<List<TaskModel>?>()
-//        get() = _allTasks // getter
-//
-//    fun getAllTask(){
-//        repository.getAllTask() {
-//            allTask , success , message ->
-//            if (success){
-//                _allTasks.value = allTask
-//            }
-//        }
-//    }
-
-    private val _allTasks = MutableLiveData<List<TaskModel>>() // Initialize properly
-    val allTasks: LiveData<List<TaskModel>> = _allTasks  // Expose LiveData (not Mutable)
-
-    fun getAllTask() {
-        repository.getAllTask { allTask, success, message ->
+    fun getAllTask(){
+        repository.getAllTask() {
+                allTask, success, message ->
             if (success) {
-                _allTasks.value = allTask // Use postValue to update UI from background thread
+                _allTasks.value = allTask
             }
         }
     }
+
+
 }

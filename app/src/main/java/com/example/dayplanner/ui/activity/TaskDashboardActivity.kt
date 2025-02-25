@@ -34,9 +34,9 @@ class TaskDashboardActivity : AppCompatActivity() {
 
         taskViewModel.getAllTask()
 
-        taskViewModel.allTasks.observe(this) {
-            product ->
-            product?.let {
+        taskViewModel.allTask.observe(this) {
+            task ->
+            task?.let {
                 adapter.updateData(it)
             }
         }

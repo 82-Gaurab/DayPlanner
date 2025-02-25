@@ -69,26 +69,6 @@ class TaskRepositoryImpl : TaskRepository {
     }
 
     // Get all task
-//    override fun getAllTask(callback: (List<TaskModel>?, Boolean, String) -> Unit) {
-//        reference.addListenerForSingleValueEvent(object : ValueEventListener {
-//            override fun onDataChange(snapshot: DataSnapshot) {
-//                var tasks = mutableListOf<TaskModel>()
-//                if (snapshot.exists()) {
-//                    for (eachTask in snapshot.children) {
-//                        var model = eachTask.getValue(TaskModel::class.java)
-//                        if (model != null){
-//                            tasks.add(model)
-//                        }
-//                    }
-//                    callback (tasks , true , "fetched")
-//                }
-//            }
-//
-//            override fun onCancelled(error: DatabaseError) {
-//                callback (null, false, error.message)
-//            }
-//        })
-//    }
     override fun getAllTask(callback: (List<TaskModel>?, Boolean, String) -> Unit) {
         reference.addValueEventListener(object : ValueEventListener { // Change this
             override fun onDataChange(snapshot: DataSnapshot) {

@@ -34,11 +34,11 @@ class AddTaskActivity : AppCompatActivity() {
             addTask()
         }
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.inpTaskDetail)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.inpTaskDetail)) { v, insets ->
+//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+//            insets
+//        }
     }
 
     @SuppressLint("DefaultLocale")
