@@ -35,10 +35,10 @@
       android:layout_marginBottom="10dp">
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/inpTaskDetail"
+        android:id="@+id/inpTaskDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter task Detail" />
+        android:hint="Enter task Desc" />
   </com.google.android.material.textfield.TextInputLayout>
 
   <TimePicker

@@ -44,14 +44,20 @@ class AddTaskActivity : AppCompatActivity() {
     @SuppressLint("DefaultLocale")
     private fun addTask(){
         var taskTitle = binding.inpTaskTitle.text.toString()
-        var taskDesc = binding.inpTaskDetail.text.toString()
+        var taskDesc = binding.inpTaskDesc.text.toString()
 
         // Fetch time from TimePicker
         val hour = binding.timePicker.hour
         val minute = binding.timePicker.minute
 
-        // Convert hour and minute to a formatted time string
-        val taskTime = String.format("%02d:%02d", hour, minute)
+// Determine AM or PM
+        val amPm = if (hour < 12) "AM" else "PM"
+
+// Convert to 12-hour format
+        val formattedHour = if (hour % 12 == 0) 12 else hour % 12
+
+// Format the time string
+        val taskTime = String.format("%02d:%02d %s", formattedHour, minute, amPm)
 
         var model = TaskModel(
             "",

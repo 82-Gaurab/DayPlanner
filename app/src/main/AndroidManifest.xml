@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DayPlanner"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activity.UpdateTaskActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activity.DashBoardActivity"
             android:exported="true">
             <intent-filter>
