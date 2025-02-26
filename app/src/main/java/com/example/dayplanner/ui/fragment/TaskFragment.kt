@@ -19,6 +19,7 @@ import com.example.dayplanner.databinding.FragmentTaskBinding
 import com.example.dayplanner.repository.TaskRepositoryImpl
 import com.example.dayplanner.viewmodel.TaskViewModel
 import com.example.dayplanner.ui.activity.AddTaskActivity
+import com.example.dayplanner.ui.activity.UpdateTaskActivity
 import java.util.ArrayList
 
 class TaskFragment : Fragment() {
@@ -83,6 +84,32 @@ class TaskFragment : Fragment() {
                         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
                     }
                 }
+            }
+
+        }).attachToRecyclerView(binding.taskRecyclerView)
+
+
+        ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val taskId = adapter.getTaskId(viewHolder.adapterPosition)
+
+                // Create intent to start UpdateTaskActivity
+                val intent = Intent(requireContext(), UpdateTaskActivity::class.java)
+                intent.putExtra("taskId", taskId)
+
+                // Start the activity
+                startActivity(intent)
+
+                // Notify adapter to reset swipe (since starting an activity does not reset item swipe state)
+                adapter.notifyItemChanged(viewHolder.adapterPosition)
             }
 
         }).attachToRecyclerView(binding.taskRecyclerView)
