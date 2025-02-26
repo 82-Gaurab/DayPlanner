@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.dayplanner.R
 import com.example.dayplanner.adapter.TaskAdapter
 import com.example.dayplanner.databinding.FragmentTaskBinding
@@ -59,6 +62,30 @@ class TaskFragment : Fragment() {
         binding.addTaskFloatingBtn.setOnClickListener {
             startActivity(Intent(requireContext(), AddTaskActivity::class.java))
         }
+
+        ItemTouchHelper(object: ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT ){
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                TODO("Not yet implemented")
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                var taskId = adapter.getTaskId(viewHolder.adapterPosition)
+
+                taskViewModel.deleteTask(taskId){
+                        success, message ->
+                    if (success) {
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                    }else {
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+
+        }).attachToRecyclerView(binding.taskRecyclerView)
 
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
