@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/editTaskDesc"
@@ -9,6 +10,7 @@
     android:gravity="center"
     android:paddingStart="15dp"
     android:paddingEnd="15dp"
+    android:background="@drawable/suntornado"
     tools:context=".ui.activity.RegistrationActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -85,6 +87,7 @@
         android:layout_gravity="end"
         android:text="Log in"
         android:textColor="@color/blue"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:padding="5dp"/>
 
 </LinearLayout>
