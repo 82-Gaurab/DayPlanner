@@ -8,6 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="@drawable/background"
     tools:context=".ui.activity.AddTaskActivity">
 
   <com.google.android.material.textfield.TextInputLayout
@@ -22,7 +23,8 @@
         android:id="@+id/inpTaskTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter task title" />
+        android:hint="Enter task title"
+        android:background="@color/gray"/>
 
   </com.google.android.material.textfield.TextInputLayout>
 
@@ -38,7 +40,8 @@
         android:id="@+id/inpTaskDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter task Desc" />
+        android:hint="Enter task Desc"
+        android:background="@color/gray"/>
   </com.google.android.material.textfield.TextInputLayout>
 
   <TimePicker
@@ -48,7 +51,8 @@
       android:layout_centerHorizontal="true"
       android:layout_marginTop="20dp"
       android:layout_marginBottom="20dp"
-      android:timePickerMode="spinner"/>
+      android:timePickerMode="spinner"
+      android:background="@color/gray"/>
 
   <Button
       android:id="@+id/addBtn"

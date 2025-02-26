@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
                     success, message ->
                 if (success) {
                     Toast.makeText(this@LoginActivity,message, Toast.LENGTH_SHORT).show()
+                    startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
                 }else{
                     Toast.makeText(this@LoginActivity,message, Toast.LENGTH_SHORT).show()
                 }

@@ -7,6 +7,7 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     tools:context=".ui.activity.UpdateTaskActivity">
 
     <com.google.android.material.textfield.TextInputLayout
@@ -21,7 +22,8 @@
             android:id="@+id/updateTaskTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Update task title" />
+            android:hint="Update task title"
+            android:background="@color/gray"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -37,7 +39,8 @@
             android:id="@+id/updateTaskDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Update task Detail" />
+            android:hint="Update task Detail"
+            android:background="@color/gray"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <TimePicker
@@ -47,7 +50,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:timePickerMode="spinner"/>
+        android:timePickerMode="spinner"
+        android:background="@color/gray"/>
 
     <Button
         android:id="@+id/updateBtn"
