@@ -27,8 +27,8 @@ class LoginActivity : AppCompatActivity() {
         val userViewModel = UserViewModel(userRepository)
 
         binding.btnLogin.setOnClickListener {
-            var email: String = binding.editTextEmail.text.toString()
-            var password: String = binding.editTextPassword.text.toString()
+            var email: String = binding.inpEmail.text.toString()
+            var password: String = binding.inpPassword.text.toString()
 
             userViewModel.login(email, password) {
                     success, message ->

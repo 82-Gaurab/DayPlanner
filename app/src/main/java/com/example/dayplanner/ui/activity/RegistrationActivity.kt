@@ -50,15 +50,15 @@ class RegistrationActivity : AppCompatActivity() {
                 }
             }
 
-            binding.redirectLogin.setOnClickListener {
-                startActivity(Intent(this@RegistrationActivity, LoginActivity::class.java))
-            }
-
             ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.editTaskDesc)) { v, insets ->
                 val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
                 v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
                 insets
             }
+        }
+
+        binding.redirectLogin.setOnClickListener {
+            startActivity(Intent(this@RegistrationActivity, LoginActivity::class.java))
         }
     }
 
