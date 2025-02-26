@@ -1,6 +1,7 @@
 package com.example.dayplanner.ui.activity
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -55,6 +56,37 @@ class UpdateTaskActivity : AppCompatActivity() {
                     }
                 } catch (e: ParseException) {
                     e.printStackTrace()
+                }
+            }
+        }
+
+        binding.updateBtn.setOnClickListener {
+            val taskTitle = binding.updateTaskTitle.text.toString()
+            val taskDesc = binding.updateTaskDesc.text.toString()
+
+            // Fetch time from TimePicker
+            val hour = binding.updateTimePicker.hour
+            val minute = binding.updateTimePicker.minute
+
+            val amPm = if (hour < 12) "AM" else "PM"
+
+            val formattedHour = if (hour % 12 == 0) 12 else hour % 12
+
+            val taskTime = String.format("%02d:%02d %s", formattedHour, minute, amPm)
+
+            var updateMap = mutableMapOf<String, Any>()
+
+            updateMap["taskTitle"] = taskTitle
+            updateMap["taskDesc"] = taskDesc
+            updateMap["taskTime"] = taskTime
+
+            taskViewModel.updateTask(taskId.toString() , updateMap){
+                success, message ->
+                if(success) {
+                    Toast.makeText(this@UpdateTaskActivity, message.toString(), Toast.LENGTH_LONG).show()
+                    finish()
+                } else {
+                    Toast.makeText(this@UpdateTaskActivity, message.toString(), Toast.LENGTH_LONG).show()
                 }
             }
         }
