@@ -13,6 +13,24 @@
     android:background="@drawable/suntornado"
     tools:context=".ui.activity.RegistrationActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textStyle="bold"
+        android:textSize="40sp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:src="@drawable/baseline_account_circle_24"
+        android:layout_marginBottom="40dp"
+        app:tint="@color/white" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,8 +39,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inpFirstName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="First Name" />
+            android:layout_height="match_parent"
+            android:hint="First Name"
+            android:background="@color/gray"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -34,8 +53,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inpLastName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Last Name" />
+            android:layout_height="match_parent"
+            android:hint="Last Name"
+            android:background="@color/gray"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -46,8 +66,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inpContact"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Phone no" />
+            android:layout_height="match_parent"
+            android:hint="Phone no"
+            android:background="@color/gray"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -58,8 +79,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/textEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email" />
+            android:layout_height="match_parent"
+            android:hint="Email"
+            android:background="@color/gray"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -70,14 +92,16 @@
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inpPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password" />
+            android:layout_height="match_parent"
+            android:hint="Password"
+            android:background="@color/gray"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnRegister"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Sign Up" />
 
     <TextView
@@ -86,6 +110,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:text="Log in"
+        android:textStyle="bold"
         android:textColor="@color/blue"
         android:textSize="20sp"
         android:padding="5dp"/>

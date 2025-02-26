@@ -8,8 +8,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:paddingStart="15dp"
-    android:paddingEnd="15dp"
     android:background="@drawable/suntornado"
     tools:context=".ui.activity.LoginActivity" >
 
@@ -35,12 +33,14 @@
         android:id="@+id/inpEmailContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp" >
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp" >
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inpEmail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Email"
             android:background="@color/gray" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -49,12 +49,14 @@
         android:id="@+id/inpPassContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/inpPassword"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="Password"
             android:background="@color/gray"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -68,14 +70,18 @@
         android:textSize="20sp"
         android:textColor="@color/blue"
         android:layout_marginBottom="5dp"
-        android:textStyle="italic"/>
+        android:textStyle="bold"
+        android:layout_marginEnd="15dp" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Log In"
-        android:layout_marginBottom="5dp"/>
+        android:textSize="20sp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"/>
 
 
     <TextView
@@ -86,6 +92,7 @@
         android:layout_gravity="end"
         android:textSize="20sp"
         android:textColor="@color/blue"
-        android:textStyle="italic"/>
+        android:textStyle="bold"
+        android:layout_marginEnd="15dp" />
 
 </LinearLayout>

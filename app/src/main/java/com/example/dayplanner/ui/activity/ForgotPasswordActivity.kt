@@ -27,7 +27,7 @@ class ForgotPasswordActivity : AppCompatActivity() {
 
 
         binding.btnSubmit.setOnClickListener {
-            var email: String = binding.textEmail.text.toString();
+            var email: String = binding.inpEmail.text.toString();
 
             userViewModel.forgetPassword(email) {
                     success, message ->
