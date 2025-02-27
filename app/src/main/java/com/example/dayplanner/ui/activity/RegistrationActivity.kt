@@ -11,12 +11,14 @@ import com.example.dayplanner.R
 import com.example.dayplanner.databinding.ActivityRegistrationBinding
 import com.example.dayplanner.model.UserModel
 import com.example.dayplanner.repository.UserRepositoryImp
+import com.example.dayplanner.utils.LoadingUtils
 import com.example.dayplanner.viewmodel.UserViewModel
 
 class RegistrationActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityRegistrationBinding
     lateinit var userViewModel: UserViewModel
+    lateinit var loadingUtils: LoadingUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,10 +27,13 @@ class RegistrationActivity : AppCompatActivity() {
         binding = ActivityRegistrationBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        loadingUtils = LoadingUtils(this)
+
         val userRepository = UserRepositoryImp()
         userViewModel = UserViewModel(userRepository)
 
         binding.btnRegister.setOnClickListener {
+            loadingUtils.show()
             var email: String = binding.textEmail.text.toString()
             var password: String = binding.inpPassword.text.toString()
             var fName: String = binding.inpFirstName.text.toString()
@@ -42,11 +47,13 @@ class RegistrationActivity : AppCompatActivity() {
                         email, fName, lName, contact
                     )
                     addUser(userModel)
+                    loadingUtils.dismiss()
                 } else {
                     Toast.makeText(
                         this@RegistrationActivity,
                         message, Toast.LENGTH_SHORT
                     ).show()
+                    loadingUtils.dismiss()
                 }
             }
 

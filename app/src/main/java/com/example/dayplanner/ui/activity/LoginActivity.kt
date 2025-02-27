@@ -10,11 +10,13 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.dayplanner.R
 import com.example.dayplanner.databinding.ActivityLoginBinding
 import com.example.dayplanner.repository.UserRepositoryImp
+import com.example.dayplanner.utils.LoadingUtils
 import com.example.dayplanner.viewmodel.UserViewModel
 
 class LoginActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityLoginBinding
+    lateinit var loadingUtils: LoadingUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,19 +25,24 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        loadingUtils = LoadingUtils(this)
+
         val userRepository = UserRepositoryImp()
         val userViewModel = UserViewModel(userRepository)
 
         binding.btnLogin.setOnClickListener {
+            loadingUtils.show()
             var email: String = binding.inpEmail.text.toString()
             var password: String = binding.inpPassword.text.toString()
 
             userViewModel.login(email, password) {
                     success, message ->
                 if (success) {
+                    loadingUtils.dismiss()
                     Toast.makeText(this@LoginActivity,message, Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this@LoginActivity, DashBoardActivity::class.java))
                 }else{
+                    loadingUtils.dismiss()
                     Toast.makeText(this@LoginActivity,message, Toast.LENGTH_SHORT).show()
                 }
             }

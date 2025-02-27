@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.dayplanner.R
 import com.example.dayplanner.databinding.ActivityUpdateTaskBinding
 import com.example.dayplanner.repository.TaskRepositoryImpl
+import com.example.dayplanner.utils.LoadingUtils
 import com.example.dayplanner.viewmodel.TaskViewModel
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -17,6 +18,7 @@ import java.util.Locale
 class UpdateTaskActivity : AppCompatActivity() {
     lateinit var binding: ActivityUpdateTaskBinding
     lateinit var taskViewModel: TaskViewModel
+    lateinit var loadingUtils: LoadingUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +26,8 @@ class UpdateTaskActivity : AppCompatActivity() {
 
         binding = ActivityUpdateTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadingUtils = LoadingUtils(this)
 
         val repo = TaskRepositoryImpl()
         taskViewModel = TaskViewModel(repo)
@@ -61,6 +65,7 @@ class UpdateTaskActivity : AppCompatActivity() {
         }
 
         binding.updateBtn.setOnClickListener {
+            loadingUtils.show()
             val taskTitle = binding.updateTaskTitle.text.toString()
             val taskDesc = binding.updateTaskDesc.text.toString()
 
@@ -83,9 +88,11 @@ class UpdateTaskActivity : AppCompatActivity() {
             taskViewModel.updateTask(taskId.toString() , updateMap){
                 success, message ->
                 if(success) {
+                    loadingUtils.dismiss()
                     Toast.makeText(this@UpdateTaskActivity, message.toString(), Toast.LENGTH_LONG).show()
                     finish()
                 } else {
+                    loadingUtils.dismiss()
                     Toast.makeText(this@UpdateTaskActivity, message.toString(), Toast.LENGTH_LONG).show()
                 }
             }

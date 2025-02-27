@@ -12,6 +12,7 @@ import com.example.dayplanner.R
 import com.example.dayplanner.databinding.ActivityAddTaskBinding
 import com.example.dayplanner.model.TaskModel
 import com.example.dayplanner.repository.TaskRepositoryImpl
+import com.example.dayplanner.utils.LoadingUtils
 import com.example.dayplanner.viewmodel.TaskViewModel
 
 class AddTaskActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class AddTaskActivity : AppCompatActivity() {
     lateinit var binding: ActivityAddTaskBinding
 
     lateinit var taskViewModel: TaskViewModel
+    lateinit var loadingUtils: LoadingUtils
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,8 @@ class AddTaskActivity : AppCompatActivity() {
 
         binding = ActivityAddTaskBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        loadingUtils = LoadingUtils(this)
 
         var repo = TaskRepositoryImpl()
         taskViewModel = TaskViewModel(repo)
@@ -43,6 +47,7 @@ class AddTaskActivity : AppCompatActivity() {
 
     @SuppressLint("DefaultLocale")
     private fun addTask(){
+        loadingUtils.show()
         var taskTitle = binding.inpTaskTitle.text.toString()
         var taskDesc = binding.inpTaskDesc.text.toString()
 
@@ -68,10 +73,12 @@ class AddTaskActivity : AppCompatActivity() {
 
         taskViewModel.addTask(model) {success , message ->
             if (success) {
+                loadingUtils.dismiss()
                 Toast.makeText(this@AddTaskActivity, message, Toast.LENGTH_LONG).show()
                 startActivity(Intent(this@AddTaskActivity, DashBoardActivity::class.java))
                 finish()
             } else {
+                loadingUtils.dismiss()
                 Toast.makeText(this@AddTaskActivity, message, Toast.LENGTH_LONG).show()
             }
         }
