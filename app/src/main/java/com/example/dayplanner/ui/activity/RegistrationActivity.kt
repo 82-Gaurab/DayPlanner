@@ -48,6 +48,7 @@ class RegistrationActivity : AppCompatActivity() {
                     )
                     addUser(userModel)
                     loadingUtils.dismiss()
+                    startActivity(Intent(this@RegistrationActivity, LoginActivity::class.java))
                 } else {
                     Toast.makeText(
                         this@RegistrationActivity,
