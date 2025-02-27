@@ -112,7 +112,7 @@
         android:layout_gravity="end"
         android:text="Log in"
         android:textStyle="bold"
-        android:textColor="@color/blue"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:padding="5dp"/>
 
